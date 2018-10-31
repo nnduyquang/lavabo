@@ -4,6 +4,32 @@
 Route::get('/', function () {
     return view('frontend.home.index');
 });
+
+Route::get('/lien-he.html', function () {
+    return view('frontend.contact.index');
+});
+
+Route::get('/gioi-thieu.html', function () {
+    return view('frontend.about-us.index');
+});
+
+Route::get('/san-pham.html', function () {
+    return view('frontend.products.index');
+});
+
+Route::get('/tin-tuc.html', function () {
+    return view('frontend.blogs.index');
+});
+
+Route::get('/tin-tuc-chi-tiet.html', function () {
+    return view('frontend.blog-details.index');
+});
+
+Route::get('/san-pham-chi-tiet.html', function () {
+    return view('frontend.product-details.index');
+});
+
+
 Route::post('/tim-kiem','FrontendController@getSearch')->name('search');
 
 

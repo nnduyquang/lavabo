@@ -1,4 +1,5 @@
 //RESET CSS
+@import url('https://fonts.googleapis.com/css?family=Niramit|Noto+Sans|Philosopher|Varela+Round|Lalezar');
 @font-face {
   font-family: UTMAVO;
   src: url('../fonts/utm-avo.ttf');
@@ -19,7 +20,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 body {
   line-height: 1;
-  font-family: UTMAVO!important;
+  font-family: 'Varela Round', sans-serif!important;
 }
 
 //ol, ul {

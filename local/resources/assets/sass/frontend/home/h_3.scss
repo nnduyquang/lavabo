@@ -1,0 +1,110 @@
+#h_3 {
+  padding: 50px 0px;
+  h4 {
+    font-size: 26px;
+    width: fit-content;
+    margin: auto;
+    //font-weight: bold;
+    font-family: 'Lalezar', cursive;
+    padding: 8px 0px;
+    position: relative;
+    margin-bottom: 18px;
+    &:before {
+      content: '';
+      width: 50%;
+      height: 120%;
+      border-top: 1px solid #babab9;
+      border-bottom: 1px solid #babab9;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .border-hover{
+    position: relative;
+    &:before{
+      position: absolute;
+      content: '';
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background-color: $main-color2;
+      transition: .3s;
+    }
+    &:hover:before{
+      width: 100%;
+    }
+  }
+  .pro_cover {
+    width: 100%;
+    height: 268px;
+    overflow: hidden;
+    background-color: #1b1e21;
+    //margin-bottom: 18px;
+    position: relative;
+    cursor: pointer;
+    &:hover {
+      .img-pro {
+        transform: scale(1.2);
+      }
+    }
+    &:hover:before{
+      opacity: 1;
+    }
+    &:before {
+      width: 100%;
+      height: 100%;
+      content: '';
+      top: 0;
+      left: 0;
+      position: absolute;
+      z-index: 1;
+      background: rgba(00,00,00,0.3);
+      opacity: 0;
+      transition: .8s;
+    }
+    .img-pro {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transition: .8s;
+      background: no-repeat center center;
+      -webkit-background-size: cover;
+      background-size: cover;
+    }
+  }
+
+  .pro-info{
+    width: 100%;
+    //border: 1px solid #babab9;
+    //border-top: none;
+    h5{
+      padding: 28px 0px 10px 0px;
+      width: fit-content;
+      margin:auto;
+      font-weight: bold;
+      max-width: 90%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      a{
+        color: #1b1e21;
+      }
+    }
+    p.call-num{
+      text-align: center;
+      padding: 0px auto;
+    }
+    p.gia-sp{
+      text-align: center;
+      padding: 15px 0px;
+      span{
+        font-weight: bold;
+        //color: $main-color2;
+      }
+    }
+  }
+}

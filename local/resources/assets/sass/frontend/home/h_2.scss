@@ -1,0 +1,32 @@
+#h_2{
+  .left{
+    background-position: center center;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100px;
+  }
+  .right{
+    background-position: center center;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100px;
+  }
+  h5{
+    font-size: 45px;
+    font-family: 'Lalezar', cursive;
+  }
+  p{
+    font-size: 28px;
+  }
+  button{
+    margin-top: 20px;
+    padding: 12px 18px;
+    border: none;
+    background-color: #1b1e21;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+  }
+}

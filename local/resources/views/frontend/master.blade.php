@@ -15,6 +15,7 @@
     <meta property="og:image" content="@yield('image-og')" />
     <meta property="og:description" content="@yield('description')" />
     <link rel="shortcut icon" href="images/icon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/icon/favicon.ico" type="image/x-icon">
     {{--<meta property="og:site_name" content="Site Name, i.e. Moz" />--}}
     {{ Html::style('css/core.common.css') }}
     {{ Html::style('css/core.frontend.css') }}
@@ -27,7 +28,7 @@
 </header>
 
 <div id="blurrMe">
-    @include('frontend.common.menu.m-menu')
+    {{--@include('frontend.common.menu.m-menu')--}}
     @include('frontend.common.menu.menu')
     @yield('slider')
     @yield('container')
@@ -44,9 +45,13 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    new WOW().init();
+    $('.carousel').carousel({
+        interval: 5000
+    })
 </script>
-{{--@yield('scripts')--}}
-{{ Html::script('js/scripts.js') }}
+@yield('jv-scripts')
+{{--{{ Html::script('js/scripts.js') }}--}}
 <div class="callback d-lg-none d-md-none">
     <div class="phone_animation">
         <div class="phone_animation_circle"></div>
@@ -55,7 +60,7 @@
                                                                             aria-hidden="true"></i></a>
     </div>
 </div>
-<div class="callback d-none d-md-block" style="right: 150px;bottom: -30px;left:inherit">
+<div class="callback d-none d-md-block" style="right: 0px;bottom: -30px;left:inherit">
     <div class="phone_animation">
         <div class="phone_animation_circle"></div>
         <div class="phone_animation_circle_fill"></div>
@@ -63,10 +68,10 @@
                                                                             aria-hidden="true"></i></a>
     </div>
 </div>
-<div class="mess_desk_bot d-none d-md-block" style="position: fixed;bottom:40px;right: 0px;">
-    <a href="tel:0962599482" style="display: block;width: 260px;height: 56px;background: url({{URL::to('images/nenhot.png')}}) no-repeat;text-align: center;padding-top: 10px;color:#fff;font-size: 20px;font-family: 'roboto-bold'">
-    </a>
-</div>
+{{--<div class="mess_desk_bot d-none d-md-block" style="position: fixed;bottom:40px;right: 0px;">--}}
+    {{--<a href="tel:0962599482" style="display: block;width: 260px;height: 56px;background: url({{URL::to('images/nenhot.png')}}) no-repeat;text-align: center;padding-top: 10px;color:#fff;font-size: 20px;font-family: 'roboto-bold'">--}}
+    {{--</a>--}}
+{{--</div>--}}
 
 
 </body>
