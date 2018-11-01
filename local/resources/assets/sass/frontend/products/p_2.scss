@@ -64,5 +64,18 @@
 
   .img-ttlq{
     background-position: center center;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 76px;
+    height: 58px;
+  }
+  h5{
+    font-size: 13px;
+    height: 58px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
   }
 }

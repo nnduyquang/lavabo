@@ -1280,6 +1280,19 @@ This class is added to the container
 
 #p_2 .img-ttlq {
   background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 76px;
+  height: 58px;
+}
+
+#p_2 h5 {
+  font-size: 13px;
+  height: 58px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
 
 #pd_1 {
