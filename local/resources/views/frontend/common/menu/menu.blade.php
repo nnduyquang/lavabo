@@ -35,7 +35,7 @@
                         <li  class="dropdown-overlay">
                             <a href="{{URL::asset('san-pham.html')}}" class="{{ request()->is('san-pham*') ? 'active' : '/' }}">SẢN PHẨM</a>
                             <ul class="dropdown-content">
-                                <li><p><a href="">SẢN PHẨM 1 sản phẩm 2</a></p></li>
+                                <li><a href="">SẢN PHẨM 1</a></li>
                                 <li><a href="">SẢN PHẨM 1</a></li>
                                 <li><a href="">SẢN PHẨM 1</a></li>
                                 <li><a href="">SẢN PHẨM 1</a></li>
