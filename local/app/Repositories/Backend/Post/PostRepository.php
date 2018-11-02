@@ -63,7 +63,19 @@ class PostRepository extends EloquentRepository implements PostRepositoryInterfa
     {
         $parameters = $this->_model->prepareParameters($request);
         $result = $this->update($id, $parameters->all());
-        $result->seos->update($parameters->all());
+        $seo = new Seo();
+        if (!$seo->isSeoParameterEmpty($request)) {
+            if(is_null($result->seo_id)){
+                $data = Seo::create($request->all());
+                $result->update(['seo_id'=>$data->id]);
+            }else{
+                $result->seos->update($parameters->all());
+            }
+        }else{
+            if(!is_null($result->seo_id)){
+                $result->seos->delete();
+            }
+        }
         $syncData = array();
         foreach ($parameters['list_category_id'] as $key => $item) {
             $syncData[$item] = array('type' => CATEGORY_POST);

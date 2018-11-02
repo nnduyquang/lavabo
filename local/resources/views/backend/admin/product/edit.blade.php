@@ -184,42 +184,62 @@
             <h3>SEO</h3>
             <div class="content">
                 <div class="show-pattern">
-                    <span class="title">{{$product->seos->seo_title}}</span>
+                    @if(!is_null($product->seo_id))
+                        <span class="title">{{$product->seos->seo_title}}</span>
+                    @else
+                        <span class="title"></span>
+                    @endif
                     <span class="link">{{URL::to('/')}}/{{$product->path}}</span>
-                    <span class="description">{{$product->seos->seo_description}}</span>
+                    @if(!is_null($product->seo_id))
+                        <span class="description">{{$product->seos->seo_description}}</span>
+                    @else
+                        <span class="description"></span>
+                    @endif
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <strong>Từ khóa cần SEO</strong>
-                        {!! Form::text('seo_keywords',$product->seos->seo_keywords, array('placeholder' => 'keywords cách nhau dấu phẩy','class' => 'form-control')) !!}
+                        @if(!is_null($product->seo_id))
+                            {!! Form::text('seo_keywords',$product->seos->seo_keywords, array('placeholder' => 'keywords cách nhau dấu phẩy','class' => 'form-control')) !!}
+                        @else
+                            {!! Form::text('seo_keywords',null, array('placeholder' => 'keywords cách nhau dấu phẩy','class' => 'form-control')) !!}
+                        @endif
                         <ul class="error-notice">
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-12 form-group">
                     <strong>Tiêu Đề (title):</strong>
-                    {!! Form::text('seo_title',$product->seos->seo_title, array('placeholder' => 'Tên','class' => 'form-control')) !!}
+                    @if(!is_null($product->seo_id))
+                        {!! Form::text('seo_title',$product->seos->seo_title, array('placeholder' => 'Tên','class' => 'form-control')) !!}
+                    @else
+                        {!! Form::text('seo_title',null, array('placeholder' => 'Tên','class' => 'form-control')) !!}
+                    @endif
                 </div>
                 <div class="col-md-12 form-group">
                     <strong>Mô Tả (description):</strong>
-                    {!! Form::textarea('seo_description',$product->seos->seo_description,array('placeholder' => '','id'=>'seo-description-post','class' => 'form-control','rows'=>'10','style'=>'resize:none')) !!}
+                    @if(!is_null($product->seo_id))
+                        {!! Form::textarea('seo_description',$product->seos->seo_description,array('placeholder' => '','id'=>'seo-description-post','class' => 'form-control','rows'=>'10','style'=>'resize:none')) !!}
+                    @else
+                        {!! Form::textarea('seo_description',null,array('placeholder' => '','id'=>'seo-description-post','class' => 'form-control','rows'=>'10','style'=>'resize:none')) !!}
+                    @endif
                 </div>
             </div>
             <h3>Mạng Xã Hội</h3>
             <div class="content">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group">
                         <strong>Chọn hình đại diện hiển thị MXH: </strong>
-                        @if($product->seos->seo_image!='')
-                            {!! Form::text('seo_image', url('/').'/'.$product->seos->seo_image, array('class' => 'form-control','id'=>'pathImageMXH')) !!}
+                        @if(!is_null($product->seo_id))
+                            {!! Form::text('seo_image', $product->seos->seo_image, array('class' => 'form-control','id'=>'pathImageMXH')) !!}
                         @else
-                            {!! Form::text('seo_image', '', array('class' => 'form-control','id'=>'pathImageMXH')) !!}
+                            {!! Form::text('seo_image', null, array('class' => 'form-control','id'=>'pathImageMXH')) !!}
                         @endif
                         <br>
                         {!! Form::button('Tìm', array('id' => 'btnBrowseImageMXH','class'=>'btn btn-primary')) !!}
                     </div>
                     <div class="form-group">
-                        @if($product->seos->seo_image!='')
+                        @if(!is_null($product->seo_id))
                             {{ Html::image($product->seos->seo_image,'',array('id'=>'showHinhMXH','class'=>'show-image'))}}
                         @else
                             {{ Html::image('','',array('id'=>'showHinhMXH','class'=>'show-image'))}}

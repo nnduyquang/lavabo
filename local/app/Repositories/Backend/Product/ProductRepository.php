@@ -61,8 +61,13 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
     public function createNewProduct($request)
     {
         $data = [];
-        $seo = Seo::create($request->all());
-        $request->request->add(['seo_id' => $seo->id]);
+        $seo = new Seo();
+        if (!$seo->isSeoParameterEmpty($request)) {
+            $seo = Seo::create($request->all());
+            $request->request->add(['seo_id' => $seo->id]);
+        } else {
+            $request->request->add(['seo_id' => null]);
+        }
         $parameters = $this->_model->prepareParameters($request);
         $result = $this->_model->create($parameters->all());
         $attachData = array();
@@ -125,7 +130,19 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
         $data = [];
         $parameters = $this->_model->prepareParameters($request);
         $result = $this->update($id,$parameters->all());
-        $result->seos->update($parameters->all());
+        $seo = new Seo();
+        if (!$seo->isSeoParameterEmpty($request)) {
+            if(is_null($result->seo_id)){
+                $data = Seo::create($request->all());
+                $result->update(['seo_id'=>$data->id]);
+            }else{
+                $result->seos->update($parameters->all());
+            }
+        }else{
+            if(!is_null($result->seo_id)){
+                $result->seos->delete();
+            }
+        }
         $syncData = array();
         foreach ($parameters['list_category_id'] as $key=>$item){
             $syncData[$item]=array('type'=>CATEGORY_PRODUCT);
