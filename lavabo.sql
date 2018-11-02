@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th9 14, 2018 lúc 12:32 PM
+-- Thời gian đã tạo: Th10 02, 2018 lúc 11:30 AM
 -- Phiên bản máy phục vụ: 10.1.31-MariaDB
 -- Phiên bản PHP: 7.0.29
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `startproject`
+-- Cơ sở dữ liệu: `lavabo`
 --
 
 -- --------------------------------------------------------
@@ -39,22 +39,21 @@ CREATE TABLE `category_items` (
   `parent_id` int(10) UNSIGNED DEFAULT NULL,
   `type` tinyint(4) NOT NULL DEFAULT '0',
   `order` int(11) NOT NULL DEFAULT '1',
-  `isActive` tinyint(4) NOT NULL DEFAULT '1',
+  `is_active` tinyint(4) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `seo_id` int(10) UNSIGNED NOT NULL
+  `seo_id` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `category_items`
 --
 
-INSERT INTO `category_items` (`id`, `name`, `path`, `description`, `image`, `image_mobile`, `level`, `parent_id`, `type`, `order`, `isActive`, `created_at`, `updated_at`, `seo_id`) VALUES
-(1, 'Test 1', 'test-1', '<p>\r\n	Test 1\r\n</p>', 'images/uploads/images/gt_1.jpg', NULL, 0, NULL, 0, 1, 1, '2018-07-17 02:13:46', '2018-07-17 02:13:46', 1),
-(2, 'Test 2', 'test-2', '<p>\r\n	Test 2\r\n</p>', 'images/uploads/images/gt_1.jpg', NULL, 0, NULL, 0, 2, 1, '2018-07-17 02:14:03', '2018-07-17 02:14:03', 2),
-(3, 'Test 3', 'test-3', '<p>\r\n	Test 3\r\n</p>', 'images/uploads/images/gt_1.jpg', NULL, 0, NULL, 0, 3, 1, '2018-07-17 02:14:21', '2018-07-17 02:14:21', 3),
-(4, 'test1-1', 'test1-1', '<p>\r\n	test1-1\r\n</p>', 'images/uploads/images/gt_1.jpg', NULL, 1, 1, 0, 5, 1, '2018-07-17 02:24:13', '2018-07-17 02:24:13', 4),
-(5, 'test 5', 'test-5', '<p>\r\n	test 5\r\n</p>', 'images/uploads/images/gt_1.jpg', NULL, 0, NULL, 0, 5, 1, '2018-07-17 02:32:23', '2018-07-17 02:32:23', 5);
+INSERT INTO `category_items` (`id`, `name`, `path`, `description`, `image`, `image_mobile`, `level`, `parent_id`, `type`, `order`, `is_active`, `created_at`, `updated_at`, `seo_id`) VALUES
+(1, 'Bồn Cầu', 'bon-cau', NULL, NULL, NULL, 0, NULL, 1, 1, 1, '2018-11-02 08:07:29', '2018-11-02 08:07:29', NULL),
+(2, 'Bồn Tắm', 'bon-tam', NULL, NULL, NULL, 0, NULL, 1, 1, 1, '2018-11-02 08:07:46', '2018-11-02 08:07:46', NULL),
+(3, 'Lavabo', 'lavabo', NULL, NULL, NULL, 0, NULL, 1, 1, 1, '2018-11-02 08:09:04', '2018-11-02 08:09:04', NULL),
+(4, 'Vòi Sen Tắm', 'voi-sen-tam', NULL, NULL, NULL, 0, NULL, 1, 1, 1, '2018-11-02 08:09:13', '2018-11-02 08:09:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -65,6 +64,7 @@ INSERT INTO `category_items` (`id`, `name`, `path`, `description`, `image`, `ima
 CREATE TABLE `category_many` (
   `category_id` int(10) UNSIGNED NOT NULL,
   `item_id` int(10) UNSIGNED NOT NULL,
+  `type` tinyint(4) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -73,10 +73,10 @@ CREATE TABLE `category_many` (
 -- Đang đổ dữ liệu cho bảng `category_many`
 --
 
-INSERT INTO `category_many` (`category_id`, `item_id`, `created_at`, `updated_at`) VALUES
-(1, 1, '2018-09-12 14:56:37', '2018-09-12 14:56:37'),
-(4, 1, '2018-09-13 02:48:34', '2018-09-13 02:48:34'),
-(5, 1, '2018-09-12 14:56:37', '2018-09-12 14:56:37');
+INSERT INTO `category_many` (`category_id`, `item_id`, `type`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '2018-11-02 09:07:01', '2018-11-02 09:41:46'),
+(1, 2, 1, '2018-11-02 09:38:12', '2018-11-02 09:42:01'),
+(1, 3, 1, '2018-11-02 09:41:35', '2018-11-02 09:43:37');
 
 -- --------------------------------------------------------
 
@@ -125,7 +125,26 @@ CREATE TABLE `configs` (
 --
 
 INSERT INTO `configs` (`id`, `name`, `content`, `description`, `order`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'config-contact', '<p>\r\n	<strong><em><span style=\"background-color:#f1c40f;\">Hotline đặt hàng</span>:</em></strong><em>&nbsp;&nbsp;<strong>097.388.9336 - 0914.675.777</strong></em>\r\n</p>\r\n\r\n<p>\r\n	<strong><em>Hotline hỗ trợ tư vấn và phản hồi ý kiến</em></strong><em>:&nbsp;&nbsp;<strong>097.388.9336</strong></em>\r\n</p>\r\n\r\n<p>\r\n	<strong><em>Hân hạnh được phục vụ quý khách hàng.!</em></strong>\r\n</p>\r\n\r\n<p>\r\n	<strong><em>Thông tin liên hệ với chúng tôi:</em></strong>\r\n</p>\r\n\r\n<p>\r\n	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<strong>CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ THÉP KHÁNH NAM</strong>\r\n</p>\r\n\r\n<p>\r\n	<strong>TRỤ SỞ CHÍNH:</strong>&nbsp;<em>201 Bình Thành, KP 4, P. Bình Hưng Hòa, Q. Bình Tân, thành phố Hồ Chí Minh</em>\r\n</p>\r\n\r\n<p>\r\n	<strong>Di động:</strong><em>&nbsp;097.388.9336 - 0914.675.777</em>\r\n</p>', NULL, NULL, 1, NULL, '2018-03-30 09:07:51');
+(1, 'config-contact', '<p>\r\n	Lô B-13, QL13, Golden A, TX Bến Cát, tỉnh Bình Dương\r\n</p>', NULL, NULL, 1, NULL, '2018-10-05 03:33:34'),
+(3, 'config-company-name', 'Công ty CP DVTM và xây dựng địa ốc KIM OANH', NULL, NULL, 1, NULL, '2018-10-05 03:33:34'),
+(4, 'config-phone', '0917503788', NULL, NULL, 1, NULL, '2018-10-05 02:16:14'),
+(5, 'config-email', NULL, NULL, NULL, 1, NULL, NULL),
+(6, 'config-seo-keywords', NULL, NULL, NULL, 1, NULL, NULL),
+(7, 'config-seo-title', NULL, NULL, NULL, 1, NULL, NULL),
+(8, 'config-seo-description', NULL, NULL, NULL, 1, NULL, NULL),
+(9, 'config-seo-image', NULL, NULL, NULL, 1, NULL, NULL),
+(10, 'email-receive', 'trangnh.sml@gmail.com', NULL, NULL, 1, NULL, '2018-10-04 08:48:40'),
+(11, 'email-sender-subject', 'Bất Động Sản Kim Oanh Đã Nhận Được Mail Của Bạn', NULL, NULL, 1, NULL, '2018-10-04 08:48:40'),
+(12, 'email-sender-from', 'Bất Động Sản Kim Oanh', NULL, NULL, 1, NULL, '2018-10-04 08:48:40'),
+(13, 'email-receive-subject', 'Thông Tin Liên Hệ Mới Từ Khách Hàng', NULL, NULL, 1, NULL, '2018-10-04 08:48:40'),
+(14, 'email-receive-from', 'Bất Động Sản Kim Oanh', NULL, NULL, 1, NULL, '2018-10-04 08:48:40'),
+(15, 'email-sender-content', '<p>\r\n	Dear, Quý Khách,<br>\r\n	Bất động sản kim oanh&nbsp;đã nhận được mail của quý khách, chúng tôi sẽ phản hồi trong vòng 24h, xin cảm ơn.<br>\r\n	Trân trọng\r\n</p>', NULL, NULL, 1, NULL, '2018-10-04 08:48:40'),
+(16, 'email-signatures', NULL, NULL, NULL, 1, NULL, NULL),
+(17, 'script-js-header', NULL, NULL, NULL, 1, NULL, '2018-09-19 08:58:22'),
+(18, 'script-js-body', NULL, NULL, NULL, 1, NULL, NULL),
+(19, 'config-phone-1', '0917 503 788', NULL, NULL, 1, NULL, '2018-10-05 03:33:34'),
+(20, 'config-phone-2', '098 2324 578', NULL, NULL, 1, NULL, '2018-10-05 03:33:34'),
+(21, 'logo-config', '', NULL, NULL, 1, NULL, '2018-10-05 03:33:34');
 
 -- --------------------------------------------------------
 
@@ -154,8 +173,8 @@ CREATE TABLE `menus` (
 
 INSERT INTO `menus` (`id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
 (1, 'quang test 2 as', '', '_self', NULL, '#000000', NULL, 1, '2018-09-14 04:10:33', '2018-09-14 08:38:13', 'menu.index', NULL),
-(2, 'Thư Test', '', '_self', NULL, '#000000', NULL, 2, '2018-09-14 04:48:02', '2018-09-14 08:25:26', 'menu.index', NULL),
-(3, 'Chip Test', '', '_self', NULL, '#000000', NULL, 3, '2018-09-14 04:49:28', '2018-09-14 08:25:47', 'menu.index', NULL);
+(2, 'Thư Test', '', '_self', NULL, '#000000', NULL, 2, '2018-09-14 04:48:02', '2018-11-02 02:40:30', 'menu.index', NULL),
+(3, 'Chip Test', '', '_self', NULL, '#000000', NULL, 3, '2018-09-14 04:49:28', '2018-11-02 02:40:30', 'menu.index', NULL);
 
 -- --------------------------------------------------------
 
@@ -293,23 +312,16 @@ CREATE TABLE `posts` (
   `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `path` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8mb4_unicode_ci,
-  `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` longtext COLLATE utf8mb4_unicode_ci,
   `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `post_type` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
-  `isActive` tinyint(1) NOT NULL DEFAULT '1',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `category_item_id` int(11) DEFAULT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `seo_id` int(10) UNSIGNED NOT NULL
+  `seo_id` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `posts`
---
-
-INSERT INTO `posts` (`id`, `title`, `path`, `description`, `content`, `image`, `post_type`, `isActive`, `category_item_id`, `user_id`, `created_at`, `updated_at`, `seo_id`) VALUES
-(1, 'test aaa', 'test-aaa', '<p>\r\n	test aaa\r\n</p>', '<p>\r\n	test aaa\r\n</p>', 'images/uploads/images/gt_1.jpg', 1, 1, NULL, 1, '2018-09-12 14:56:37', '2018-09-12 14:56:37', 12);
 
 -- --------------------------------------------------------
 
@@ -321,21 +333,31 @@ CREATE TABLE `products` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `path` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `isActive` tinyint(1) NOT NULL DEFAULT '0',
+  `is_active` tinyint(1) NOT NULL DEFAULT '0',
   `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sub_image` longtext COLLATE utf8mb4_unicode_ci,
   `description` longtext COLLATE utf8mb4_unicode_ci,
-  `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` longtext COLLATE utf8mb4_unicode_ci,
   `code` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT '0',
-  `sale` int(11) NOT NULL DEFAULT '0',
+  `sale` int(11) DEFAULT NULL,
   `final_price` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT '0',
+  `is_in_stock` tinyint(1) NOT NULL DEFAULT '1',
   `order` int(11) NOT NULL DEFAULT '1',
   `user_id` int(10) UNSIGNED NOT NULL,
-  `category_product_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `seo_id` int(10) UNSIGNED NOT NULL
+  `seo_id` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `path`, `is_active`, `image`, `sub_image`, `description`, `content`, `code`, `price`, `sale`, `final_price`, `is_in_stock`, `order`, `user_id`, `created_at`, `updated_at`, `seo_id`) VALUES
+(1, 'Bồn Cầu 1', 'bon-cau-1', 1, 'images/uploads/images/san_pham/bon_cau/img-3859_752463.JPG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, '2018-11-02 09:07:01', '2018-11-02 09:41:45', NULL),
+(2, 'Bồn Cầu 2', 'bon-cau-2', 1, 'images/uploads/images/san_pham/bon_cau/img-3860_673693.JPG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, '2018-11-02 09:38:12', '2018-11-02 09:42:01', NULL),
+(3, 'Bồn cầu 3', 'bon-cau-3', 1, 'images/uploads/images/san_pham/bon_cau/img-3861_801376.JPG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, '2018-11-02 09:41:35', '2018-11-02 09:43:37', NULL);
 
 -- --------------------------------------------------------
 
@@ -388,26 +410,10 @@ CREATE TABLE `seos` (
   `seo_title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `seo_description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `seo_keywords` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `seo_image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `seos`
---
-
-INSERT INTO `seos` (`id`, `seo_title`, `seo_description`, `seo_keywords`, `created_at`, `updated_at`) VALUES
-(1, 'Test 1', 'Test 1', 'Test 1', '2018-07-17 02:13:46', '2018-07-17 02:13:46'),
-(2, 'Test 2', 'Test 2', 'Test 2', '2018-07-17 02:14:03', '2018-07-17 02:14:03'),
-(3, 'Test 3', 'Test 3', 'Test 3', '2018-07-17 02:14:21', '2018-07-17 02:14:21'),
-(4, 'test1-1', 'test1-1', 'test1,1', '2018-07-17 02:24:13', '2018-07-17 02:24:13'),
-(5, 'test 5', 'test 5', 'test 5', '2018-07-17 02:32:23', '2018-07-17 02:32:23'),
-(6, 'test bài viết', 'test bài viết', 'test bài viết', '2018-07-17 03:13:47', '2018-07-17 03:13:47'),
-(8, NULL, NULL, NULL, '2018-09-12 14:36:28', '2018-09-12 14:36:28'),
-(9, NULL, NULL, NULL, '2018-09-12 14:50:50', '2018-09-12 14:50:50'),
-(10, NULL, NULL, NULL, '2018-09-12 14:53:02', '2018-09-12 14:53:02'),
-(11, NULL, NULL, NULL, '2018-09-12 14:54:14', '2018-09-12 14:54:14'),
-(12, NULL, NULL, NULL, '2018-09-12 14:56:37', '2018-09-12 14:56:37');
 
 -- --------------------------------------------------------
 
@@ -510,7 +516,6 @@ ALTER TABLE `posts`
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
   ADD KEY `products_user_id_foreign` (`user_id`),
-  ADD KEY `products_category_product_id_foreign` (`category_product_id`),
   ADD KEY `products_seo_id_foreign` (`seo_id`);
 
 --
@@ -548,7 +553,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `category_items`
 --
 ALTER TABLE `category_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `category_permissions`
@@ -560,7 +565,7 @@ ALTER TABLE `category_permissions`
 -- AUTO_INCREMENT cho bảng `configs`
 --
 ALTER TABLE `configs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT cho bảng `menus`
@@ -584,13 +589,13 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT cho bảng `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `roles`
@@ -602,7 +607,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT cho bảng `seos`
 --
 ALTER TABLE `seos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
@@ -650,7 +655,6 @@ ALTER TABLE `posts`
 -- Các ràng buộc cho bảng `products`
 --
 ALTER TABLE `products`
-  ADD CONSTRAINT `products_category_product_id_foreign` FOREIGN KEY (`category_product_id`) REFERENCES `category_items` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `products_seo_id_foreign` FOREIGN KEY (`seo_id`) REFERENCES `seos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `products_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
