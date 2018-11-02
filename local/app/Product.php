@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,9 +42,11 @@ class Product extends Model
             $parameters->request->add(['list_category_id' => [1]]);
         }
         if (!$parameters->input('is_active')) {
-            $parameters->request->add(['is_active' => 0]);
-        } else {
-            $parameters->request->add(['is_active' => 1]);
+            $parameters->request->add(['is_active' => null]);
+        }
+
+        if (!$parameters->input('is_in_stock')) {
+            $parameters->request->add(['is_in_stock' => null]);
         }
         if ($parameters->input('image-choose')) {
             $listImage = $parameters->input('image-choose');
@@ -69,6 +72,14 @@ class Product extends Model
             $this->attributes['is_active'] = 1;
         } else {
             $this->attributes['is_active'] = 0;
+        }
+    }
+    public function setIsInStockAttribute($value)
+    {
+        if (!IsNullOrEmptyString($value)) {
+            $this->attributes['is_in_stock'] = 1;
+        } else {
+            $this->attributes['is_in_stock'] = 0;
         }
     }
 
