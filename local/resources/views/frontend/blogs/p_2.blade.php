@@ -28,15 +28,15 @@
                             <h4 class="border-bottom pb-2">TIN LIÊN QUAN </h4>
 
                             <ul>
-                                @for ($i = 0; $i < 6; $i++)
+                                @for ($i = 0; $i < 5; $i++)
                                     <li>
-                                        <div class="d-flex justify-content-between">
-                                            <a href="">
-                                                <h6>Sản phẩm {{$i}}</h6>
-                                            </a>
-                                            <a href="">
-                                                ({{$i*10}})
-                                            </a>
+                                        <div class="">
+                                            <div class="pr-2 float-left">
+                                                <div class="img-ttlq" style="background-image:url({{URL::asset('http://webaashi.com/TF/html/aashi-faucets/assets/img/all/wa-blog-detail.jpg')}});">
+
+                                                </div>
+                                            </div>
+                                            <h5><a href="">MAURIS ET PULVINAR CIDUNT CHECK !@# CHLA HJSLKH CHÁ JH</a></h5>
                                         </div>
                                     </li>
                                 @endfor

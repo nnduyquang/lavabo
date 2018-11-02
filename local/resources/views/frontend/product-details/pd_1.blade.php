@@ -2,12 +2,20 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
+                <a class="fancybox" data-caption=""
+                   data-fancybox="gallery-cus2"
+                   href="{{URL::asset('images/sanpham/sp1/product-detail.jpg')}}">
                 <img src="{{URL::asset('images/sanpham/sp1/product-detail.jpg')}}" alt="">
+                </a>
                 <div class="pd-slider position-relative mt-3">
                     <div id="owl-project" class="owl-carousel owl-theme">
                         @for ($i = 0; $i < 5; $i++)
                             <div class="project-items border">
-                                <img src="{{URL::asset('images/sanpham/sp1/product-detail-1.jpg')}}" alt="">
+                                <a class="fancybox" data-caption=""
+                                   data-fancybox="gallery-cus3"
+                                   href="{{URL::asset('images/sanpham/sp1/product-detail-1.jpg')}}">
+                                    <img src="{{URL::asset('images/sanpham/sp1/product-detail-1.jpg')}}" alt="">
+                                </a>
                             </div>
                         @endfor
                     </div>
