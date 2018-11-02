@@ -80,9 +80,9 @@
                     <div class="form-group">
                         <select name="select-city" class="form-control">
                             <option value="-1">Chọn Tỉnh/Thành Phố</option>
-                            @foreach($cities as $key=>$item)
-                                <option value="{{$item->id}}">{{$item->name}}</option>
-                            @endforeach
+                            {{--@foreach($cities as $key=>$item)--}}
+                                {{--<option value="{{$item->id}}">{{$item->name}}</option>--}}
+                            {{--@endforeach--}}
                         </select>
                     </div>
                     <div class="form-group">
@@ -102,9 +102,9 @@
                     <div class="form-group">
                         <select name="direction_id" class="form-control">
                             <option value="-1">Chọn Hướng</option>
-                            @foreach($directions as $key=>$item)
-                                <option value="{{$item->id}}">{{$item->name}}</option>
-                            @endforeach
+                            {{--@foreach($directions as $key=>$item)--}}
+                                {{--<option value="{{$item->id}}">{{$item->name}}</option>--}}
+                            {{--@endforeach--}}
                         </select>
                     </div>
                 </div>
@@ -121,9 +121,9 @@
                                 <strong>ĐVT: </strong>
                                 <select name="select-unit" class="form-control">
                                     <option value="-1">Chọn Đơn Vị Tính</option>
-                                    @foreach($units as $key=>$item)
-                                        <option value="{{$item->id}}">{{$item->name}}</option>
-                                    @endforeach
+                                    {{--@foreach($units as $key=>$item)--}}
+                                        {{--<option value="{{$item->id}}">{{$item->name}}</option>--}}
+                                    {{--@endforeach--}}
                                 </select>
                             </div>
                         </div>

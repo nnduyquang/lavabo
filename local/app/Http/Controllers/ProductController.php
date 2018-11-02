@@ -5,17 +5,19 @@ namespace App\Http\Controllers;
 
 use App\CategoryItem;
 use App\Product;
+use App\Repositories\Backend\Product\ProductRepositoryInterface;
 use App\Seo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $productRepository;
+
+    public function __construct(ProductRepositoryInterface $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
     public function index(Request $request)
     {
         $products = Product::orderBy('id', 'DESC')->paginate(5);
@@ -30,22 +32,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $dd_category_products = CategoryItem::where('type', CATEGORY_PRODUCT)->orderBy('order')->get();
-        foreach ($dd_category_products as $key => $data) {
-            if ($data->level == CATEGORY_PRODUCT_CAP_1) {
-                $data->name = ' ---- ' . $data->name;
-            } else if ($data->level == CATEGORY_PRODUCT_CAP_2) {
-                $data->name = ' --------- ' . $data->name;
-            } else if ($data->level == CATEGORY_PRODUCT_CAP_3) {
-                $data->name = ' ------------------ ' . $data->name;
-            } else if ($data->level == CATEGORY_PRODUCT_CAP_3) {
-                $data->name = ' ------------------ ' . $data->name;
-            }
-        }
-        $newArray = [];
-        self::showCategoryDropDown($dd_category_products, 0, $newArray);
-        $dd_category_products = array_pluck($newArray, 'name', 'id');
-        return view('backend.admin.product.create', compact('roles', 'dd_category_products'));
+        $data = $this->productRepository->showCreateProduct();
+        $categoryProduct = $data['categoryProduct'];
+        return view('backend.admin.product.create', compact('roles', 'categoryProduct'));
     }
 
     /**

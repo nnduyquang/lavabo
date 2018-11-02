@@ -21,18 +21,9 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
     public function showCreateProduct()
     {
         $data = [];
-        $location = new Location();
         $categoryItem = new CategoryItem();
-        $direction = new Direction();
-        $unit = new Unit();
         $categoryProduct = $categoryItem->getAllParent('order', CATEGORY_PRODUCT);
-        $cities = $location->getAllCities();
-        $directions = $direction->getAllDirection();
-        $units = $unit->getAllUnit();
-        $data['cities'] = $cities;
         $data['categoryProduct'] = $categoryProduct;
-        $data['directions'] = $directions;
-        $data['units'] = $units;
         return $data;
     }
 
