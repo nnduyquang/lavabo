@@ -13,48 +13,39 @@
                 <div class="col-md-3 mb-5 wow fadeInDown">
                     <div class="border border-hover">
                         <div class="pro_cover">
-                            <a href=""><div class="img-pro"
-                                 style="background-image:url({{URL::asset('images/sanpham/11.jpg')}})"></div>
+                            @if(!is_null($data->sale)||$data->sale!=0)
+                                <div class="pro-sale">
+                                    <div class="flag">
+                                        <p class="sale-percent">{{$data->sale}}%</p>
+                                    </div>
+
+                                </div>
+                            @endif
+                            <a href="">
+                                <div class="img-pro"
+                                     style="background-image:url({{URL::asset('images/sanpham/11.jpg')}})"></div>
                             </a>
                         </div>
                         <div class="pro-info">
                             <h5><a href="">{{$data->name}}</a></h5>
-                             <p class="call-num"><i class="fas fa-phone text-warning"></i> 0908 868 868</p>
+                            <p class="call-num"><i class="fas fa-phone text-warning"></i> 0908 868 868</p>
                             <p class="gia-sp">
-                                <span> @if(!is_null($data->price)||$data->price!=0)
-                                        {{$data->price}} VNĐ
+
+                                    @if(!is_null($data->price)||$data->price!=0)
+                                        @if(!is_null($data->final_price)||$data->final_price!=0)
+                                            <span class="old-price">₫{{$data->price}}</span> <span>₫{{$data->final_price}}</span>
+                                        @else
+                                        <span> {{$data->price}} VNĐ </span>
+                                        @endif
                                     @else
-                                        Giá liên hệ
+                                    <span>Giá liên hệ</span>
                                     @endif
-                                </span>
+
                             </p>
                         </div>
                     </div>
                 </div>
             @endforeach
-            <div class="col-md-3 mb-5 wow fadeInDown">
-                <div class="border border-hover">
-                    <div class="pro_cover">
-                        <div class="pro-sale">
-                            <div class="flag">
-                                <p class="sale-percent">50%</p>
-                            </div>
-
-                        </div>
-                        <a href=""><div class="img-pro"
-                                        style="background-image:url({{URL::asset('images/sanpham/11.jpg')}})"></div>
-                        </a>
-                    </div>
-                    <div class="pro-info">
-                        <h5><a href="">TEST 2</a></h5>
-                        <p class="call-num"><i class="fas fa-phone text-warning"></i> 0908 868 868</p>
-                        <p class="gia-sp">
-                            <span class="old-price">₫75.000</span>  <span>₫250.000</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>

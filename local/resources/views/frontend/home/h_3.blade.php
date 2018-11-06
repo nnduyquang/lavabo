@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h4>SẢN PHẨM GIÃM GIÁ</h4>
+                <h4>SẢN PHẨM GIẢM GIÁ</h4>
 
                 <p class="pb-4" style="width: 86%;margin: auto">Lorem ipsum dolor sit amet, consectetur adipisicing
                     elit. Accusamus alias aut beatae consequatur cum
