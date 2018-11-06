@@ -126,6 +126,9 @@
                                 <div class="checkbox">
                                     <label><input {{$product->is_in_stock==1?'checked':''}}  name="is_in_stock" type="checkbox"> Còn Trong Kho?</label>
                                 </div>
+                                <div class="checkbox">
+                                    <label><input {{$product->is_hot==1?'checked':''}} name="is_hot" type="checkbox"> Bán Chạy?</label>
+                                </div>
                             </div>
                         </div>
                     </div>

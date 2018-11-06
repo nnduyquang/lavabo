@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class Product extends Model
 {
     protected $fillable = [
-        'id','name','path','description','content','code' ,'image','sub_image','is_active','price','sale','final_price','is_in_stock','user_id','seo_id','created_at','updated_at'
+        'id','name','path','description','content','code' ,'image','sub_image','is_active','price','sale','final_price','is_in_stock','is_hot','user_id','seo_id','created_at','updated_at'
     ];
     protected $hidden = ['id'];
     public function users()
@@ -31,9 +31,7 @@ class Product extends Model
     {
         return $this->belongsToMany('App\Post', 'post_product', 'product_id', 'post_id')->withTimestamps();
     }
-    public function getAllProductActiveOrderById(){
-        return $this->where('is_active',ACTIVE)->orderBy('id','DESC')->get();
-    }
+
     public function prepareParameters($parameters)
     {
         $parameters->request->add(['path' => '']);
@@ -47,6 +45,9 @@ class Product extends Model
 
         if (!$parameters->input('is_in_stock')) {
             $parameters->request->add(['is_in_stock' => null]);
+        }
+        if (!$parameters->input('is_hot')) {
+            $parameters->request->add(['is_hot' => null]);
         }
         if ($parameters->input('image-choose')) {
             $listImage = $parameters->input('image-choose');
@@ -66,6 +67,16 @@ class Product extends Model
         }
         return $parameters;
     }
+
+    public function getAllProductActiveOrderById(){
+        return $this->where('is_active',ACTIVE)->orderBy('id','DESC')->get();
+    }
+
+    public function getBestSellProduct($take){
+        return $this->where('is_hot',BEST_SALE)->orderBy('id','DESC')->take($take)->get();
+    }
+
+
     public function setIsActiveAttribute($value)
     {
         if (!IsNullOrEmptyString($value)) {
@@ -80,6 +91,14 @@ class Product extends Model
             $this->attributes['is_in_stock'] = 1;
         } else {
             $this->attributes['is_in_stock'] = 0;
+        }
+    }
+    public function setIsHotAttribute($value)
+    {
+        if (!IsNullOrEmptyString($value)) {
+            $this->attributes['is_hot'] = 1;
+        } else {
+            $this->attributes['is_hot'] = 0;
         }
     }
 

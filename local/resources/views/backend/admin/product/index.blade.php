@@ -84,6 +84,7 @@
                     <th>% Giảm Giá</th>
                     <th>% Giá Đã Giảm</th>
                     <th>Còn Hàng?</th>
+                    <th>Bán Chạy?</th>
                     <th>Loại Sản Phẩm</th>
                     <th>Người Đăng</th>
                     <th>Ngày Đăng</th>
@@ -126,6 +127,13 @@
                             Hết Hàng
                         @endif
                     </td>
+                    <td>
+                        @if($data->is_hot==1)
+                            Có
+                        @else
+                            Không
+                        @endif
+                    </td>
                     @php
                         $arrayCategoryItem=$data->categoryitems(CATEGORY_PRODUCT)->get();
                     @endphp
@@ -133,7 +141,12 @@
                     <td>{{ $data->users->name }}</td>
                     <td>{{ $data->created_at }}</td>
                     <td>{{ $data->updated_at }}</td>
-                    <td>{{$data->is_active}}</td>
+                    <td>@if($data->is_active==1)
+                            Đang Kích Hoạt
+                        @else
+                            Tạm Ẩn
+                        @endif
+                    </td>
                     <td>
                         @permission(('product-edit'))
                         <a class="btn btn-primary" href="{{ route('product.edit',$data->id) }}">Cập Nhật</a>

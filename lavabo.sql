@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 02, 2018 lúc 11:30 AM
+-- Thời gian đã tạo: Th10 06, 2018 lúc 03:15 AM
 -- Phiên bản máy phục vụ: 10.1.31-MariaDB
 -- Phiên bản PHP: 7.0.29
 
@@ -75,8 +75,8 @@ CREATE TABLE `category_many` (
 
 INSERT INTO `category_many` (`category_id`, `item_id`, `type`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, '2018-11-02 09:07:01', '2018-11-02 09:41:46'),
-(1, 2, 1, '2018-11-02 09:38:12', '2018-11-02 09:42:01'),
-(1, 3, 1, '2018-11-02 09:41:35', '2018-11-02 09:43:37');
+(1, 2, 1, '2018-11-02 09:38:12', '2018-11-06 02:15:09'),
+(1, 3, 1, '2018-11-02 09:41:35', '2018-11-06 02:14:58');
 
 -- --------------------------------------------------------
 
@@ -343,6 +343,7 @@ CREATE TABLE `products` (
   `sale` int(11) DEFAULT NULL,
   `final_price` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT '0',
   `is_in_stock` tinyint(1) NOT NULL DEFAULT '1',
+  `is_hot` tinyint(1) NOT NULL DEFAULT '0',
   `order` int(11) NOT NULL DEFAULT '1',
   `user_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -354,10 +355,10 @@ CREATE TABLE `products` (
 -- Đang đổ dữ liệu cho bảng `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `path`, `is_active`, `image`, `sub_image`, `description`, `content`, `code`, `price`, `sale`, `final_price`, `is_in_stock`, `order`, `user_id`, `created_at`, `updated_at`, `seo_id`) VALUES
-(1, 'Bồn Cầu 1', 'bon-cau-1', 1, 'images/uploads/images/san_pham/bon_cau/img-3859_752463.JPG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, '2018-11-02 09:07:01', '2018-11-02 09:41:45', NULL),
-(2, 'Bồn Cầu 2', 'bon-cau-2', 1, 'images/uploads/images/san_pham/bon_cau/img-3860_673693.JPG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, '2018-11-02 09:38:12', '2018-11-02 09:42:01', NULL),
-(3, 'Bồn cầu 3', 'bon-cau-3', 1, 'images/uploads/images/san_pham/bon_cau/img-3861_801376.JPG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, '2018-11-02 09:41:35', '2018-11-02 09:43:37', NULL);
+INSERT INTO `products` (`id`, `name`, `path`, `is_active`, `image`, `sub_image`, `description`, `content`, `code`, `price`, `sale`, `final_price`, `is_in_stock`, `is_hot`, `order`, `user_id`, `created_at`, `updated_at`, `seo_id`) VALUES
+(1, 'Bồn Cầu 1', 'bon-cau-1', 1, 'images/uploads/images/san_pham/bon_cau/img-3859_752463.JPG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 1, 1, '2018-11-02 09:07:01', '2018-11-02 09:41:45', NULL),
+(2, 'Bồn Cầu 2', 'bon-cau-2', 1, 'images/uploads/images/san_pham/bon_cau/img-3860_673693.JPG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 1, '2018-11-02 09:38:12', '2018-11-06 02:15:09', NULL),
+(3, 'Bồn cầu 3', 'bon-cau-3', 1, 'images/uploads/images/san_pham/bon_cau/img-3861_801376.JPG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, 1, '2018-11-02 09:41:35', '2018-11-06 02:14:58', NULL);
 
 -- --------------------------------------------------------
 

@@ -9,7 +9,7 @@
                     dicta dolorum, eius enim esse eum excepturi ipsum nesciunt numquam possimus quam quidem, quo sit
                     totam?.</p>
             </div>
-            @for ($i = 0; $i < 8; $i++)
+            @foreach($data['best_sell_product'] as $key=>$data)
                 <div class="col-md-3 mb-5 wow fadeInDown">
                     <div class="border border-hover">
                         <div class="pro_cover">
@@ -18,15 +18,20 @@
                             </a>
                         </div>
                         <div class="pro-info">
-                            <h5><a href="">SẢN PHẨM SP0{{$i+1}}</a></h5>
+                            <h5><a href="">{{$data->name}}</a></h5>
                              <p class="call-num"><i class="fas fa-phone text-warning"></i> 0908 868 868</p>
                             <p class="gia-sp">
-                                <span>$500.000 VNĐ</span>
+                                <span> @if(!is_null($data->price)||$data->price!=0)
+                                        {{$data->price}} VNĐ
+                                    @else
+                                        Giá liên hệ
+                                    @endif
+                                </span>
                             </p>
                         </div>
                     </div>
                 </div>
-            @endfor
+            @endforeach
         </div>
     </div>
 </div>

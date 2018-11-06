@@ -1,9 +1,7 @@
 <?php
 
 
-Route::get('/', function () {
-    return view('frontend.home.index');
-});
+Route::get('/', 'FrontendController@getFrontend');
 
 Route::get('/lien-he.html', function () {
     return view('frontend.contact.index');

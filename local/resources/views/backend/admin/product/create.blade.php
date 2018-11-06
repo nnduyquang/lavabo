@@ -115,6 +115,9 @@
                                 <div class="checkbox">
                                     <label><input name="is_in_stock" type="checkbox"> Còn Trong Kho?</label>
                                 </div>
+                                <div class="checkbox">
+                                    <label><input name="is_hot" type="checkbox"> Bán Chạy?</label>
+                                </div>
                             </div>
                         </div>
                     </div>
