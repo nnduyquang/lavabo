@@ -32,6 +32,29 @@
                     </div>
                 </div>
             @endforeach
+            <div class="col-md-3 mb-5 wow fadeInDown">
+                <div class="border border-hover">
+                    <div class="pro_cover">
+                        <div class="pro-sale">
+                            <div class="flag">
+                                <p class="sale-percent">50%</p>
+                            </div>
+
+                        </div>
+                        <a href=""><div class="img-pro"
+                                        style="background-image:url({{URL::asset('images/sanpham/11.jpg')}})"></div>
+                        </a>
+                    </div>
+                    <div class="pro-info">
+                        <h5><a href="">TEST 2</a></h5>
+                        <p class="call-num"><i class="fas fa-phone text-warning"></i> 0908 868 868</p>
+                        <p class="gia-sp">
+                            <span class="old-price">₫75.000</span>  <span>₫250.000</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

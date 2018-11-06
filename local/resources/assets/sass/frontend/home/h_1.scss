@@ -46,11 +46,43 @@
     //margin-bottom: 18px;
     position: relative;
     cursor: pointer;
+    .pro-sale{
+      position: absolute;
+      top: 0;
+      right: 10px;
+      z-index: 10;
+      .flag {
+        position: relative;
+        height: 68px;
+        width: 0px;
+        border-left: 32px solid $main-color2;
+        border-right: 32px solid $main-color2;
+        border-bottom: 8px solid transparent;
+        opacity: 0.8;
+        transition: .6s;
+        .sale-percent{
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%,-50%);
+          opacity: 1!important;
+          font-size: 22px;
+          font-weight: bold;
+        }
+      }
+
+    }
     &:hover {
       .img-pro {
         transform: scale(1.2);
       }
     }
+    &:hover {
+      .flag {
+        opacity: 1;
+      }
+    }
+
     &:hover:before{
       opacity: 1;
     }
@@ -104,6 +136,10 @@
       span{
         font-weight: bold;
         //color: $main-color2;
+      }
+      span.old-price{
+        font-weight: normal!important;
+        text-decoration: line-through;
       }
     }
   }

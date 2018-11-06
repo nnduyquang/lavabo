@@ -718,9 +718,43 @@ This class is added to the container
   cursor: pointer;
 }
 
+#h_1 .pro_cover .pro-sale {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  z-index: 10;
+}
+
+#h_1 .pro_cover .pro-sale .flag {
+  position: relative;
+  height: 68px;
+  width: 0px;
+  border-left: 32px solid #ffd200;
+  border-right: 32px solid #ffd200;
+  border-bottom: 8px solid transparent;
+  opacity: 0.8;
+  -webkit-transition: .6s;
+  transition: .6s;
+}
+
+#h_1 .pro_cover .pro-sale .flag .sale-percent {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  opacity: 1 !important;
+  font-size: 22px;
+  font-weight: bold;
+}
+
 #h_1 .pro_cover:hover .img-pro {
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
+}
+
+#h_1 .pro_cover:hover .flag {
+  opacity: 1;
 }
 
 #h_1 .pro_cover:hover:before {
@@ -784,6 +818,11 @@ This class is added to the container
 
 #h_1 .pro-info p.gia-sp span {
   font-weight: bold;
+}
+
+#h_1 .pro-info p.gia-sp span.old-price {
+  font-weight: normal !important;
+  text-decoration: line-through;
 }
 
 #h_2 .left {
